@@ -4,9 +4,12 @@ require 'spec_helper'
 # I'd like to be to shown a list of links
 
 feature 'homepage contains links' do
-  scenario 'see links' do
+  scenario 'I can see existing links on links page' do
     Link.create(url: 'www.google.com', title: 'Google')
-    visit('/links')
+    visit '/links'
+
+  expect(page.status_code).to eq 200
+
     within 'ul#links' do
       expect(page).to have_content('Google')
     end
