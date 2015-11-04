@@ -7,6 +7,7 @@ feature 'user can save website links'do
     fill_in 'url', with: 'https://www.quora.com'
     click_button 'submit'
     Link.create(url: 'www.quora.com', title: 'Quora')
+    expect(current_path).to eq '/links'
     within 'ul#links' do
       expect(page).to have_content('Quora')
     end
